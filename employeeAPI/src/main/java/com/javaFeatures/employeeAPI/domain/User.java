@@ -26,7 +26,7 @@ public class User implements UserDetails {
     private String password;
 
     @Column(nullable = false)
-    private String role;       // Example: "ROLE_USER" or "ROLE_ADMIN"
+    private String role;
 
     public User() {
     }

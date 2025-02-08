@@ -13,7 +13,6 @@ public class DataLoader implements CommandLineRunner {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
     private final EmployeeRepository employeeRepository;
 
     public DataLoader(UserRepository userRepository, PasswordEncoder passwordEncoder, EmployeeRepository employeeRepository) {
