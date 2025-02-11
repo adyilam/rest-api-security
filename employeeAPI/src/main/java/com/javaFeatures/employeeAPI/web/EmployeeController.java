@@ -57,7 +57,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/salary/{id}")
-    public Employee getSalaryById(@PathVariable Long id) {
-        return employeeService.getSalaryById(id);
+    public ResponseEntity<Employee> getSalaryById(@PathVariable Long id) {
+        Optional<Employee> employeeSalary = Optional.ofNullable(employeeService.getEmployeeById(id));
+        return employeeSalary.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 }
