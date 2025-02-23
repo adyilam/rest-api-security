@@ -1,5 +1,5 @@
 # rest-api-security
-Basic authentication in Java using Spring Boot!
+# Basic authentication in Java using Spring Boot!
 
 Basic Authentication is a simple authentication mechanism that uses a username and password to access a resource. It is a standard authentication method defined in HTTP/1.0 and supported by RFC 7617.
 
@@ -9,7 +9,7 @@ The server responds with 401 Unauthorized and a WWW-Authenticate header requesti
 The client sends the username and password encoded in Base64 in the Authorization header.
 The server decodes the credentials, verifies them, and grants or denies access.
 
-Steps to configure Basec Authentication using Spring Boot.
+# Steps to configure Basec Authentication using Spring Boot.
 
 1. Add Dependencies
 Include Spring Security in your `pom.xml` (if using Maven):
@@ -24,20 +24,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
-2. Default Basic Authentication
-Once you add Spring Security, it enables Basic Authentication by default. A default user (`user`) and a randomly generated password (printed in logs on startup) will be used.
-
-Check the logs for the password:
-Using generated security password: 1234abcd-5678-efgh-ijkl-9876mnopqrst
-Now, any request to your API will require authentication.
-
-3. Custom Basic Authentication Configuration
+2. Custom Basic Authentication Configuration
 Define a custom username and password, add these properties to `application.properties`:
 
 spring.security.user.name=admin
 spring.security.user.password=admin123
 
-4. Custom Security Configuration
+3. Custom Security Configuration
 Create a security configuration class:
 
 import org.springframework.context.annotation.Bean;
@@ -87,7 +80,7 @@ public class EmployeeSecurityConfig {
 }
 
 
-5. Testing Basic Authentication
+4. Testing Basic Authentication
 Use Postman or cURL:
 
 # Using cURL
@@ -99,8 +92,9 @@ curl -u admin:admin http://localhost:8080/your-endpoint
 3. Enter `admin` as username and `admin` as password.
 4. Send the request.
 
- 6. Further Customization
+ 5. Further Customization
 - To secure only specific endpoints:  
+
   auth.requestMatchers("/employees").permitAll()  // Public endpoints accessible to everyone
       .requestMatchers("/h2-console/**").permitAll() // Allow H2 Console
       .requestMatchers("/employees/**")
