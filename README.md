@@ -93,14 +93,31 @@ curl -u admin:admin http://localhost:8080/your-endpoint
 4. Send the request.
 
  5. Further Customization
-- To secure only specific endpoints:  
+- To secure only specific endpoints:
 
-  auth.requestMatchers("/employees").permitAll()  // Public endpoints accessible to everyone
-      .requestMatchers("/h2-console/**").permitAll() // Allow H2 Console
-      .requestMatchers("/employees/**")
-      .hasRole("ADMIN")     // Restricted to HR / Manager role
-      .anyRequest().authenticated()  // All other requests need authentication
-  
+@Configuration
+@EnableWebSecurity
+public class EmployeeSecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChainEmployee(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(auth ->
+                        auth.requestMatchers("/employees").permitAll()  // Public endpoints accessible to everyone
+                                .requestMatchers("/h2-console/**").permitAll() // Allow H2 Console
+                                .requestMatchers("/employees/**")
+                                .hasRole("ADMIN")     // Restricted to HR / Manager role
+                                .anyRequest().authenticated()  // All other requests need authentication
+                )
+                .formLogin(Customizer.withDefaults())  // Enables form-based authentication
+                .httpBasic(Customizer.withDefaults());  // Enables Basic Auth
+
+        http.csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**")); // Disable CSRF for H2
+        http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable())); // Allow H2 Console Frames
+
+        return http.build();
+    }
+}
+
 - use BCrypt for password encoding:
    @Bean
     public PasswordEncoder passwordEncoder() {
