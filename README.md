@@ -94,12 +94,12 @@ Use Postman or cURL:
 curl -u admin:admin http://localhost:8080/your-endpoint
 
 # Using Postman
-1. Go to Authorization.
-2. Select Basic Auth.
-3. Enter `admin` as username and `admin` as password.
-4. Send the request.
+    1. Go to Authorization.
+    2. Select Basic Auth.
+    3. Enter `admin` as username and `admin` as password.
+    4. Send the request.
 
- 5. Further Customization
+5. Further Customization
 - To secure only specific endpoints:
 
 @Configuration
@@ -131,6 +131,16 @@ public class EmployeeSecurityConfig {
     public PasswordEncoder passwordEncoder() {  
         return new BCryptPasswordEncoder(); // Secure password encoding  
     }  
+6. Employee API Endpoints
+
+  ### Public Endpoints
+  GET `/api/v1/employees/employees` → Returns only public data  
+  GET `/api/v1/employees/employees/{id}` → Returns public details for an employee  
+
+  ### Private Endpoints (restricted to Admin/HR role Only)
+  POST `/api/v1/employees/employees` → Add a new employee  
+  DELETE `/api/v1/employees/employees/{id}` → Delete an employee  
+
 
 Supportive reference Documentation
 - [Spring Security Reference](https://docs.spring.io/spring-security/reference/index.html)
