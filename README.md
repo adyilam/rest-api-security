@@ -12,26 +12,33 @@ The server decodes the credentials, verifies them, and grants or denies access.
 # Steps to configure Basec Authentication using Spring Boot.
 
 1. Add Dependencies
-Include Spring Security in your `pom.xml` (if using Maven):
+### Include Spring Security in your `pom.xml` (if using Maven):
 
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-security</artifactId>
 </dependency>
 
-For Gradle:
+### For Gradle:
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
-2. Custom Basic Authentication Configuration
-Define a custom username and password, add these properties to `application.properties`:
+2. Configure H2 Database (application.properties)
+### H2 db connection (In-Memory Database, useful for testing):
+spring.datasource.url=jdbc:h2:mem:employeedb  
+spring.datasource.driverClassName=org.h2.Driver  
+spring.datasource.username=sa  
+spring.datasource.password=  
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect  
 
-spring.security.user.name=admin
-spring.security.user.password=admin123
+#### H2 Console setting, Enable H2 Console (for viewing data)
+spring.h2.console.enabled=true  
+spring.h2.console.path=/h2-console  
 
-3. Custom Security Configuration
-Create a security configuration class:
+3. Custom Security Configuration, Configure `SecurityConfig` Using `SecurityFilterChain, Modify your `SecurityConfig` class to use H2 for authentication
+
+### Create a security configuration class:
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -119,10 +126,11 @@ public class EmployeeSecurityConfig {
 }
 
 - use BCrypt for password encoding:
-   @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Secure password encoding
-    }
+
+  @Bean  
+    public PasswordEncoder passwordEncoder() {  
+        return new BCryptPasswordEncoder(); // Secure password encoding  
+    }  
 
 Supportive reference Documentation
 - [Spring Security Reference](https://docs.spring.io/spring-security/reference/index.html)
