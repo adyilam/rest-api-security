@@ -40,19 +40,19 @@ spring.h2.console.path=/h2-console
 
 ### Create a security configuration class:
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.context.annotation.Bean;  
+import org.springframework.context.annotation.Configuration;  
+import org.springframework.security.authentication.AuthenticationManager;  
+import org.springframework.security.config.Customizer;  
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;  
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;  
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;  
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;  
+import org.springframework.security.crypto.password.PasswordEncoder;  
+import org.springframework.security.web.SecurityFilterChain;  
 
-@Configuration
-@EnableWebSecurity
+@Configuration  
+@EnableWebSecurity  
 public class EmployeeSecurityConfig {
 
     @Bean
@@ -102,11 +102,11 @@ curl -u admin:admin http://localhost:8080/your-endpoint
 5. Further Customization
 - To secure only specific endpoints:
 
-@Configuration
-@EnableWebSecurity
+@Configuration  
+@EnableWebSecurity  
 public class EmployeeSecurityConfig {
 
-    @Bean
+    @Bean  
     public SecurityFilterChain securityFilterChainEmployee(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth ->
                         auth.requestMatchers("/employees").permitAll()  // Public endpoints accessible to everyone
@@ -134,12 +134,12 @@ public class EmployeeSecurityConfig {
 6. Employee API Endpoints
 
   ### Public Endpoints
-  GET `/api/v1/employees/employees` → Returns only public data  
-  GET `/api/v1/employees/employees/{id}` → Returns public details for an employee  
+  GET `/api/v1/employees/` → Returns only public data  
+  GET `/api/v1/employees/{id}` → Returns public details for an employee  
 
   ### Private Endpoints (restricted to Admin/HR role Only)
-  POST `/api/v1/employees/employees` → Add a new employee  
-  DELETE `/api/v1/employees/employees/{id}` → Delete an employee  
+  POST `/api/v1/employees/` → Add a new employee  
+  DELETE `/api/v1/employees/{id}` → Delete an employee  
 
 
 Supportive reference Documentation
