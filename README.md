@@ -12,8 +12,8 @@ The server decodes the credentials, verifies them, and grants or denies access.
 # Steps to configure Basec Authentication using Spring Boot.
 
 1. Add Dependencies
-### Include Spring Security in your `pom.xml` (if using Maven):
-
+### Include Spring Security in your `pom.xml`:
+### For Maven:   
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-security</artifactId>
