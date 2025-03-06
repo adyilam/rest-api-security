@@ -1,7 +1,7 @@
-package com.javaFeatues.employeeAPI_Oauth.web;
+package com.javaFeatues.productAPI_Oauth.web;
 
-import com.javaFeatues.employeeAPI_Oauth.domain.Product;
-import com.javaFeatues.employeeAPI_Oauth.service.ProductService;
+import com.javaFeatues.productAPI_Oauth.domain.Product;
+import com.javaFeatues.productAPI_Oauth.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

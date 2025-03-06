@@ -1,4 +1,4 @@
-package com.javaFeatues.employeeAPI_Oauth.securityConfig;
+package com.javaFeatues.productAPI_Oauth.securityConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,7 +14,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/products/**").authenticated()
+                        .requestMatchers("/api/v1/products/**").authenticated()  // protected products API
                         .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtConverter())));

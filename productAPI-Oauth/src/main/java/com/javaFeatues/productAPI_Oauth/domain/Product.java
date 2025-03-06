@@ -1,17 +1,13 @@
-package com.javaFeatues.employeeAPI_Oauth.domain;
+package com.javaFeatues.productAPI_Oauth.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import lombok.Data;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Entity
 @Table(name = "products")
 public class Product {

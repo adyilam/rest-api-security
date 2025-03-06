@@ -1,4 +1,4 @@
-package com.javaFeatues.employeeAPI_Oauth;
+package com.javaFeatues.productAPI_Oauth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
