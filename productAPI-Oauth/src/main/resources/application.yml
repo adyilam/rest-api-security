@@ -11,7 +11,7 @@ server:
   compression:
     enabled: true
 
-# Connection Pooling with HikariCP
+# Connection Pooling with HikariCP - used for catch of db connection
   datasource:
     url: jdbc:h2:mem:productdb
     driver-class-name: org.h2.Driver
